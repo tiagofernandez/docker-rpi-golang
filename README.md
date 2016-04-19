@@ -1,6 +1,6 @@
 # rpi-golang
 
-Docker image containing Go 1.6 binaries compatible with the Raspberry Pi.
+Docker image containing Go 1.6.1 binaries compatible with the Raspberry Pi.
 
 ### Example: Run and attach the Docker image with a volume mount
 ```bash
