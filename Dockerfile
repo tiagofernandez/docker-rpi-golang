@@ -16,19 +16,19 @@ RUN apt-get update && apt-get -y upgrade && \
     apt-get purge && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Set environment variables
 ENV GOROOT_BOOTSTRAP /go
 ENV GOLANG_VERSION 1.6.2
-ADD ./etc/services /etc/services
-RUN \
-    curl -Ok https://storage.googleapis.com/golang/go$GOLANG_VERSION.linux-armv6l.tar.gz && \
-    tar -xzf go$GOLANG_VERSION.linux-armv6l.tar.gz
-    
-
-# Set environment variables
 ENV GOROOT /go
 ENV GOPATH /gopath
 ENV GOARM 6
 ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+
+ADD ./etc/services /etc/services
+RUN \
+    curl -Ok https://storage.googleapis.com/golang/go$GOLANG_VERSION.linux-armv6l.tar.gz && \
+    tar -xzf go$GOLANG_VERSION.linux-armv6l.tar.gz && \
+    go get github.com/constabulary/gb/...
 
 # Define working directory
 WORKDIR /gopath
