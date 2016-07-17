@@ -12,7 +12,9 @@ RUN apt-get update && apt-get -y upgrade && \
     curl \
     build-essential \
     --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean && \
+    apt-get purge && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV GOROOT_BOOTSTRAP /go
 ENV GOLANG_VERSION 1.6.2
